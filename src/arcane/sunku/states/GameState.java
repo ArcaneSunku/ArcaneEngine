@@ -33,6 +33,8 @@ public class GameState extends State {
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0, 0, Handler.getWidth(), Handler.getHeight());
 
+        g.drawImage(Assets.getImage("wolf"), 42, 42, 32, 64, null);
+
         g.setFont(Assets.getFont("vcr").deriveFont(Font.BOLD, 32f));
         g.setColor(Color.BLACK);
         g.drawString("In_Game", 0, 32);
