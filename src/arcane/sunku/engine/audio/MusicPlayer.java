@@ -84,6 +84,9 @@ public class MusicPlayer
 
     public void close()
     {
+        if(ogg == null)
+            return;
+        
         try {
             pause();
             ogg.stop();

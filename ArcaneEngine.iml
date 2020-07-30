@@ -9,5 +9,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="EasyOgg" level="application" />
+    <orderEntry type="library" name="easyOGG" level="project" />
   </component>
 </module>
