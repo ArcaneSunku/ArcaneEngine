@@ -1,7 +1,7 @@
 package arcane.sunku.engine.audio;
 
 
-import arcane.sunku.engine.lib.OggClipWrapper;
+import arcane.sunku.engine.lib.Ogg;
 
 import java.net.URL;
 
@@ -9,7 +9,7 @@ public class MusicPlayer
 {
 
     private String currentSong;
-    private OggClipWrapper ogg;
+    private Ogg ogg;
     private boolean flipMute = true, playing = false;
 
     public MusicPlayer(String fileName)
@@ -99,8 +99,8 @@ public class MusicPlayer
         return playing;
     }
 
-    private OggClipWrapper createClip(String song, float gain) {
+    private Ogg createClip(String song, float gain) {
         URL url = this.getClass().getResource("/assets/audio/music/" + song);
-        return new OggClipWrapper(url, gain);
+        return new Ogg(url, gain);
     }
 }

@@ -13,14 +13,14 @@ import java.net.URL;
  * played more than once at a time without problem.
  */
 
-public class OggClipWrapper {
+public class Ogg {
 
     private OggClip clip;
     private URL resource;
     private float gain;
     private boolean isLooping = false;
 
-    public OggClipWrapper(URL resource, float gain) {
+    public Ogg(URL resource, float gain) {
         this.resource = resource;
         this.gain = gain;
     }
