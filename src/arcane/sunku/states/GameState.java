@@ -13,16 +13,11 @@ public class GameState extends State {
 
     @Override
     public void initialize() {
-        Handler.getPlayer().changeMusic("bloomed_dawn.ogg");
-
-        Handler.getPlayer().changeVolume(0.78f);
-        Handler.getPlayer().loop();
     }
 
     @Override
     public void update() {
         if(Input.keyJustPressed(KeyEvent.VK_ESCAPE)) {
-            Handler.getPlayer().pause();
             Handler.switchState(0);
         }
     }

@@ -15,10 +15,6 @@ public class MenuState extends State {
 
     @Override
     public void initialize() {
-        Handler.getPlayer().changeMusic("softly_falling.ogg");
-
-        Handler.getPlayer().changeVolume(.78f);
-        Handler.getPlayer().loop();
     }
 
     @Override
@@ -28,8 +24,6 @@ public class MenuState extends State {
 
         if(Input.keyJustPressed(KeyEvent.VK_SPACE)) {
             Sounds.loopClip(Assets.getWav("confirm"), 4);
-            Handler.getPlayer().pause();
-
             Handler.switchState(1);
         }
     }
