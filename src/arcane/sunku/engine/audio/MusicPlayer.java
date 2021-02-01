@@ -14,18 +14,20 @@ public class MusicPlayer
 
     public MusicPlayer(String fileName)
     {
-        ogg = createClip(fileName, 1);
         currentSong = fileName;
+        ogg = createClip(currentSong, 1);
     }
 
     public void changeVolume(float gain) {
-        close();
+        if(ogg != null)
+            close();
 
         ogg = createClip(currentSong, gain);
     }
 
     public void changeMusic(String song, boolean autoPlay) {
-        close();
+        if(ogg != null)
+            close();
 
         ogg = createClip(song, 1);
         currentSong = song;
@@ -40,6 +42,8 @@ public class MusicPlayer
 
     public void toggleSound()
     {
+        if(ogg == null) return;
+
         try {
             if(flipMute)
                 ogg.stop();
@@ -54,6 +58,8 @@ public class MusicPlayer
 
     public void play()
     {
+        if(ogg == null) return;
+
         try {
             playing = true;
             ogg.play();
@@ -64,6 +70,8 @@ public class MusicPlayer
 
     public void pause()
     {
+        if(ogg == null) return;
+
         try {
             ogg.pause();
             playing = false;
@@ -74,6 +82,8 @@ public class MusicPlayer
 
     public void loop()
     {
+        if(ogg == null) return;
+
         try {
             playing = true;
             ogg.loop();
@@ -84,9 +94,6 @@ public class MusicPlayer
 
     public void close()
     {
-        if(ogg == null)
-            return;
-        
         try {
             pause();
             ogg.stop();

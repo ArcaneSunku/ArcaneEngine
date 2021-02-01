@@ -1,8 +1,8 @@
 package arcane.sunku;
 
 import arcane.sunku.engine.audio.Sounds;
-import arcane.sunku.engine.graphics.Fonts;
-import arcane.sunku.engine.graphics.Images;
+import arcane.sunku.engine.render.Fonts;
+import arcane.sunku.engine.render.Images;
 import arcane.sunku.engine.utilities.LURCache;
 
 import javax.sound.sampled.Clip;

@@ -1,4 +1,4 @@
-package arcane.sunku.engine.graphics;
+package arcane.sunku.engine.render;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

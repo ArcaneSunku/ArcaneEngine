@@ -3,6 +3,7 @@ package arcane.sunku;
 import arcane.sunku.engine.Game;
 import arcane.sunku.engine.Handler;
 import arcane.sunku.engine.Window;
+import arcane.sunku.engine.render.Renderer;
 import arcane.sunku.engine.states.StateManager;
 import arcane.sunku.states.GameState;
 import arcane.sunku.states.MenuState;
@@ -10,29 +11,33 @@ import arcane.sunku.states.MenuState;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-public class TdGame implements Game {
+public class TechDemo implements Game {
 
-    public static final String TITLE = "2D Engine";
-    public static final int WIDTH = 640;
-    public static final int HEIGHT = 480;
-
-    private Handler handler;
-    private StateManager stateManager;
-    private Thread thread;
-    private Window window;
+    public static final String TITLE = "Arcane Engine | Technical Demo";
+    public static final int WIDTH = 640, HEIGHT = WIDTH / 16 * 9;
 
     public static boolean running;
 
-    public TdGame() {
-        window = new Window(TITLE, WIDTH, HEIGHT);
+    private Thread thread;
+
+    private final Handler handler;
+    private final Renderer renderer;
+    private final StateManager stateManager;
+    private final Window window;
+
+    public TechDemo() {
         stateManager = new StateManager();
+        window = new Window(TITLE, WIDTH, HEIGHT);
+        handler = new Handler(stateManager, window);
+        renderer = new Renderer(Handler.getWidth(), Handler.getHeight());
+
         running = false;
     }
 
     public synchronized void start() {
         if(running) return;
 
-        thread = new Thread(this, "Game_Thread");
+        thread = new Thread(this, "Main_Thread");
         running = true;
         thread.start();
     }
@@ -41,6 +46,7 @@ public class TdGame implements Game {
         if(running) running = false;
 
         try {
+            Handler.getPlayer().close();
             window.dispose();
             thread.join(1);
             System.exit(0);
@@ -53,9 +59,8 @@ public class TdGame implements Game {
     private void init() {
         Assets.load();
         window.createWindow();
-        handler = new Handler(stateManager, window);
 
-        stateManager.addState(new MenuState()); // 0
+        stateManager.addState(new MenuState());   // 0
         stateManager.addState(new GameState());   // 1
 
         Handler.switchState(0);
@@ -98,7 +103,6 @@ public class TdGame implements Game {
     @Override
     public void update() {
         handler.update();
-
         stateManager.update();
     }
 
@@ -110,16 +114,8 @@ public class TdGame implements Game {
             return;
         }
 
-        try {
-            Graphics g = bufferStrategy.getDrawGraphics();
-            g.setColor(Color.BLACK);
-            g.fillRect(0, 0, window.getWidth(), window.getHeight());
-
-            stateManager.render((Graphics2D) g);
-
-            g.dispose();
-        } finally {
-            bufferStrategy.show();
-        }
+        renderer.process(bufferStrategy, stateManager);
+        bufferStrategy.show();
     }
+
 }

@@ -1,7 +1,11 @@
 package arcane.sunku.engine;
 
+import arcane.sunku.TechDemo;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Window extends Canvas {
 
@@ -20,6 +24,24 @@ public class Window extends Canvas {
 
     public void createWindow() {
         frame = new JFrame(title);
+
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+
+                if(TechDemo.running)
+                    TechDemo.running = false;
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                super.windowClosed(e);
+
+                if(TechDemo.running)
+                    TechDemo.running = false;
+            }
+        });
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());

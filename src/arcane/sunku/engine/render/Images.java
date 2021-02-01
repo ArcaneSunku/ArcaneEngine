@@ -1,4 +1,4 @@
-package arcane.sunku.engine.graphics;
+package arcane.sunku.engine.render;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
