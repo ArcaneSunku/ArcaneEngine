@@ -6,15 +6,15 @@ import arcane.sunku.engine.utilities.Input;
 
 public class Handler {
 
-    private Input input;
-
     private static MusicPlayer player;
-    private static StateManager sm;
-    private static Window window;
+    private static StateManager states;
+    private static Window parentWindow;
 
-    public Handler(StateManager sm, Window window) {
-        Handler.sm = sm;
-        Handler.window = window;
+    private final Input input;
+
+    public Handler(StateManager stateManager, Window window) {
+        states = stateManager;
+        parentWindow = window;
 
         input = new Input(window);
         player = new MusicPlayer("softly_falling.ogg");
@@ -25,16 +25,19 @@ public class Handler {
     }
 
     public static void switchState(int state) {
-        sm.setState(state);
-        sm.initialize();
+        states.setState(state);
+        states.initialize();
     }
 
-    public static MusicPlayer getPlayer() { return player; }
+    public static MusicPlayer getPlayer() {
+        return player;
+    }
 
     public static int getWidth() {
-        return window.getWidth();
+        return parentWindow.getWidth();
     }
+
     public static int getHeight() {
-        return window.getHeight();
+        return parentWindow.getHeight();
     }
 }

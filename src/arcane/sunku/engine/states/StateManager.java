@@ -1,6 +1,6 @@
 package arcane.sunku.engine.states;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class StateManager {
 
     public void initialize() { states.get(currState).initialize(); }
     public void update() { states.get(currState).update(); }
-    public void render(Graphics2D g) { states.get(currState).render(g); }
+    public void render() { states.get(currState).render(); }
 
     public void addState(State state) { states.add(state); }
     public void removeState(int index) {

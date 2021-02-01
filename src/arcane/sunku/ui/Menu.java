@@ -1,6 +1,6 @@
 package arcane.sunku.ui;
 
-import arcane.sunku.engine.graphics.UI;
+import arcane.sunku.engine.render.UI;
 
 import java.awt.image.BufferedImage;
 

@@ -2,12 +2,11 @@ package arcane.sunku.states;
 
 import arcane.sunku.Assets;
 import arcane.sunku.engine.Handler;
+import arcane.sunku.engine.render.Renderer;
 import arcane.sunku.engine.states.State;
 import arcane.sunku.engine.utilities.Input;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class GameState extends State {
@@ -29,14 +28,14 @@ public class GameState extends State {
     }
 
     @Override
-    public void render(Graphics2D g) {
-        g.setColor(Color.LIGHT_GRAY);
-        g.fillRect(0, 0, Handler.getWidth(), Handler.getHeight());
+    public void render() {
+        Renderer.setColor(Color.LIGHT_GRAY);
+        Renderer.fillRect(0, 0, Handler.getWidth(), Handler.getHeight());
 
-        g.drawImage(Assets.getImage("wolf"), 42, 42, 32, 64, null);
+        Renderer.drawImage(Assets.getImage("wolf"), 42, 42, 32, 64);
 
-        g.setFont(Assets.getFont("vcr").deriveFont(Font.BOLD, 32f));
-        g.setColor(Color.BLACK);
-        g.drawString("In_Game", 0, 32);
+        Renderer.setFont(Assets.getFont("vcr"), Font.BOLD, 24f);
+        Renderer.setColor(Color.BLACK);
+        Renderer.drawString("In_Game", 0, 32);
     }
 }

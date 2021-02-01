@@ -28,9 +28,10 @@ public class Sounds {
         return in;
     }
 
-    private static void playClip(Clip clip, boolean loop, int loopCount) {
+    private static void playClip(Clip clip, boolean loop, int loopCount, float volume) {
         if(clip.isRunning())
             clip.stop();
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 
         clip.setFramePosition(0);
 
@@ -39,14 +40,27 @@ public class Sounds {
         else if(loop)
             clip.loop(loopCount);
 
+        gainControl.setValue(20f * (float) Math.log10((volume < 0f || volume > 1f) ? 1f : volume));
         clip.start();
     }
 
+    public static void playClip(Clip clip, float volume) {
+        playClip(clip, false, 0, volume);
+    }
+
     public static void playClip(Clip clip) {
-        playClip(clip, false, 0);
+        playClip(clip, .2f);
+    }
+
+    public static void loopClip(Clip clip, int loopCount, float volume) {
+        playClip(clip, true, loopCount, volume);
+    }
+
+    public static void loopClip(Clip clip, int loopCount) {
+        loopClip(clip, loopCount, .2f);
     }
 
     public static void loopClip(Clip clip) {
-        playClip(clip, true, 0);
+        loopClip(clip, 0);
     }
 }
