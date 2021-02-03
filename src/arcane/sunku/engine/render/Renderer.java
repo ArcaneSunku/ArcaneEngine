@@ -1,6 +1,6 @@
 package arcane.sunku.engine.render;
 
-import arcane.sunku.engine.Window;
+import arcane.sunku.engine.Game;
 import arcane.sunku.engine.states.StateManager;
 
 import java.awt.*;
@@ -18,24 +18,26 @@ public class Renderer {
     }
 
     public void process(Window window, StateManager stateManager) {
-        BufferStrategy bufferStrategy = window.getBufferStrategy();
+        if(Game.getWindow() != null) {
+            BufferStrategy bufferStrategy = window.getBufferStrategy();
 
-        if(bufferStrategy == null) {
-            window.createBufferStrategy(2);
-            return;
-        }
+            if (bufferStrategy == null) {
+                window.createBufferStrategy(2);
+                return;
+            }
 
-        try {
-            DrawGraphics = bufferStrategy.getDrawGraphics();
+            try {
+                DrawGraphics = bufferStrategy.getDrawGraphics();
 
-            DrawGraphics.setColor(Color.BLACK);
-            DrawGraphics.clearRect(0, 0, Width, Height);
-            DrawGraphics.fillRect(0, 0, Width, Height);
+                DrawGraphics.setColor(Color.BLACK);
+                DrawGraphics.clearRect(0, 0, Width, Height);
+                DrawGraphics.fillRect(0, 0, Width, Height);
 
-            stateManager.render();
-        } finally {
-            DrawGraphics.dispose();
-            bufferStrategy.show();
+                stateManager.render();
+            } finally {
+                DrawGraphics.dispose();
+                bufferStrategy.show();
+            }
         }
     }
 

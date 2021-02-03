@@ -12,7 +12,7 @@ public class StateManager {
     public StateManager() { states = new ArrayList<>(); }
 
     public void initialize() { states.get(currState).initialize(); }
-    public void update() { states.get(currState).update(); }
+    public void update(double dt) { states.get(currState).update(dt); }
     public void render() { states.get(currState).render(); }
 
     public void addState(State state) { states.add(state); }

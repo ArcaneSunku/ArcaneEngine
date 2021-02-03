@@ -1,6 +1,6 @@
 package arcane.sunku.engine.utilities;
 
-import arcane.sunku.engine.Window;
+import arcane.sunku.engine.render.Window;
 
 import java.awt.event.*;
 

@@ -1,6 +1,6 @@
-package arcane.sunku.engine;
+package arcane.sunku.engine.render;
 
-import arcane.sunku.TechDemo;
+import arcane.sunku.engine.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,16 +30,16 @@ public class Window extends Canvas {
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
 
-                if(TechDemo.running)
-                    TechDemo.running = false;
+                if(Game.running)
+                    Game.running = false;
             }
 
             @Override
             public void windowClosed(WindowEvent e) {
                 super.windowClosed(e);
 
-                if(TechDemo.running)
-                    TechDemo.running = false;
+                if(Game.running)
+                    Game.running = false;
             }
         });
 

@@ -5,7 +5,7 @@ import java.awt.*;
 public abstract class State {
 
     public abstract void initialize();
-    public abstract void update();
+    public abstract void update(double dt);
     public abstract void render();
 
 }

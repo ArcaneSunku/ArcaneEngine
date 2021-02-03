@@ -1,4 +1,4 @@
-package arcane.sunku.ui;
+package arcane.sunku.engine.ui;
 
 import arcane.sunku.engine.render.UI;
 

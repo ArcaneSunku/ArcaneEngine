@@ -1,6 +1,7 @@
-package arcane.sunku.engine;
+package arcane.sunku.engine.utilities;
 
 import arcane.sunku.engine.audio.MusicPlayer;
+import arcane.sunku.engine.render.Window;
 import arcane.sunku.engine.states.StateManager;
 import arcane.sunku.engine.utilities.Input;
 
