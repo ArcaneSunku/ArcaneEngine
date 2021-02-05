@@ -10,6 +10,11 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class is entirely to demonstrate how I would set up a ResourceManager
+ * You can do it in any other way you like if you feel its more efficient.
+ */
+
 public class Assets {
 
     private static final Map<String, Clip> SoundCache = new HashMap<>();

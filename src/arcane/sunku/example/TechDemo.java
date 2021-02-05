@@ -21,7 +21,7 @@ public class TechDemo extends GameAdapter {
     @Override
     public void initialize() {
         handler = new Handler(stateManager, Game.getWindow());
-        Assets.initialize();
+        Assets.initialize(); // will probably crash as it's purely for code example
 
         stateManager.addState(new MenuState());
         Handler.switchState(0);
