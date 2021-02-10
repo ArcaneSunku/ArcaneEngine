@@ -77,6 +77,8 @@ public class Renderer {
         setFont(font, 24f);
     }
 
-
+    public static int getStringWidth(String str) {
+        return DrawGraphics.getFontMetrics(DrawGraphics.getFont()).stringWidth(str);
+    }
 
 }
