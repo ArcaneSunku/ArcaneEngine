@@ -1,7 +1,7 @@
 package arcane.sunku.engine.render;
 
 import arcane.sunku.engine.Game;
-import arcane.sunku.engine.states.StateManager;
+import arcane.sunku.engine.scenes.SceneManager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -17,7 +17,7 @@ public class Renderer {
         this.Height = height;
     }
 
-    public void process(Window window, StateManager stateManager) {
+    public void process(Window window, SceneManager sceneManager) {
         if(Game.getWindow() != null) {
             BufferStrategy bufferStrategy = window.getBufferStrategy();
 
@@ -33,7 +33,7 @@ public class Renderer {
                 DrawGraphics.clearRect(0, 0, Width, Height);
                 DrawGraphics.fillRect(0, 0, Width, Height);
 
-                stateManager.render();
+                sceneManager.render();
             } finally {
                 DrawGraphics.dispose();
                 bufferStrategy.show();
@@ -43,6 +43,10 @@ public class Renderer {
 
     public static void drawImage(BufferedImage image, int x, int y, int width, int height) {
         DrawGraphics.drawImage(image, x, y, width, height, null);
+    }
+
+    public static void drawImage(BufferedImage image, int x, int y) {
+        DrawGraphics.drawImage(image, x, y, null);
     }
 
     public static void drawString(String string, int x, int y) {

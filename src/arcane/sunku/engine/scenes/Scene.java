@@ -1,8 +1,6 @@
-package arcane.sunku.engine.states;
+package arcane.sunku.engine.scenes;
 
-import java.awt.*;
-
-public abstract class State {
+public abstract class Scene {
 
     public abstract void initialize();
     public abstract void update(double dt);

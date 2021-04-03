@@ -3,39 +3,39 @@ package arcane.sunku.example;
 import arcane.sunku.engine.Game;
 import arcane.sunku.engine.GameAdapter;
 import arcane.sunku.engine.render.Renderer;
-import arcane.sunku.engine.states.StateManager;
+import arcane.sunku.engine.scenes.SceneManager;
 import arcane.sunku.engine.utilities.Handler;
-import arcane.sunku.example.states.MenuState;
+import arcane.sunku.example.scenes.MenuScene;
 
 public class TechDemo extends GameAdapter {
-    private final StateManager stateManager;
+    private final SceneManager sceneManager;
 
     private Handler handler;
 
     public TechDemo() {
         super("Tech Demo", 800, 800 / 16 * 9);
         renderer = new Renderer(getWidth(), getHeight());
-        stateManager = new StateManager();
+        sceneManager = new SceneManager();
     }
 
     @Override
     public void initialize() {
-        handler = new Handler(stateManager, Game.getWindow());
+        handler = new Handler(sceneManager, Game.getWindow());
         Assets.initialize(); // will probably crash as it's purely for code example
 
-        stateManager.addState(new MenuState());
+        sceneManager.addState(new MenuScene());
         Handler.switchState(0);
     }
 
     @Override
     public void update(double dt) {
         handler.update();
-        stateManager.update(dt);
+        sceneManager.update(dt);
     }
 
     @Override
     public void render() {
-        renderer.process(Game.getWindow(), stateManager);
+        renderer.process(Game.getWindow(), sceneManager);
     }
 
     public static void main(String[] args) {
