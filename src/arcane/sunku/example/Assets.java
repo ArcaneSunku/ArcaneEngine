@@ -31,21 +31,21 @@ public class Assets {
 
     public static Clip getSoundEffect(String name) {
         if(!SoundCache.containsKey(name))
-            throw new RuntimeException("Failed to find file [" + name + "]!");
+            throw new IllegalStateException("Failed to find file [" + name + "]!");
 
         return SoundCache.get(name);
     }
 
     public static Font getFont(String name) {
         if(!FontCache.containsKey(name))
-            throw new RuntimeException("Failed to find file [" + name + "]!");
+            throw new IllegalStateException("Failed to find file [" + name + "]!");
 
         return FontCache.get(name);
     }
 
     public static BufferedImage getImage(String name) {
         if(!ImageCache.containsKey(name))
-            throw new RuntimeException("Failed to find file [" + name + "]!");
+            throw new IllegalStateException("Failed to find file [" + name + "]!");
 
         return ImageCache.get(name);
     }

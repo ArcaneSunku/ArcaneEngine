@@ -2,6 +2,7 @@ package arcane.sunku.example;
 
 import arcane.sunku.engine.Game;
 import arcane.sunku.engine.GameAdapter;
+import arcane.sunku.engine.ecs.GameObject;
 import arcane.sunku.engine.render.Renderer;
 import arcane.sunku.engine.states.StateManager;
 import arcane.sunku.engine.utilities.Handler;

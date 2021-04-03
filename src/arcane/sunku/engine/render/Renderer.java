@@ -45,6 +45,10 @@ public class Renderer {
         DrawGraphics.drawImage(image, x, y, width, height, null);
     }
 
+    public static void drawImage(BufferedImage image, int x, int y) {
+        DrawGraphics.drawImage(image, x, y, null);
+    }
+
     public static void drawString(String string, int x, int y) {
         DrawGraphics.drawString(string, x, y);
     }
