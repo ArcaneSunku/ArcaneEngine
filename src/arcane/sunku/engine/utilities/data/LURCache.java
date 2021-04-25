@@ -1,4 +1,4 @@
-package arcane.sunku.engine.utilities;
+package arcane.sunku.engine.utilities.data;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

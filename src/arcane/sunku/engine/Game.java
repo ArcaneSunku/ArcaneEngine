@@ -1,12 +1,11 @@
 package arcane.sunku.engine;
 
+import arcane.sunku.engine.audio.MusicPlayer;
 import arcane.sunku.engine.render.Window;
-import arcane.sunku.engine.utilities.Handler;
 
 public class Game implements Runnable {
 
     public static boolean running;
-    private static Window window;
 
     private Thread thread;
 
@@ -21,7 +20,6 @@ public class Game implements Runnable {
      */
     public Game(IGame gameInterface) {
         game = (GameAdapter) gameInterface;
-        window = new Window(game.getTitle(), game.getWidth(), game.getHeight());
 
         running = false;
     }
@@ -38,8 +36,10 @@ public class Game implements Runnable {
         if(running) running = false;
 
         try {
-            Handler.getPlayer().close();
-            window.dispose();
+            if(MusicPlayer.get() != null)
+                MusicPlayer.get().close();
+
+            Window.get().dispose();
             thread.join(1);
             System.exit(0);
         } catch (InterruptedException e) {
@@ -49,7 +49,7 @@ public class Game implements Runnable {
     }
 
     private void init() {
-        window.createWindow();
+        Window.get().createWindow(game.getTitle(), game.getWidth(), game.getHeight());;
         game.initialize();
     }
 
@@ -79,7 +79,7 @@ public class Game implements Runnable {
 
             if(System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                window.setTitle(game.getTitle() + " | fps: " + frames);
+                Window.get().setTitle(game.getTitle() + " | fps: " + frames);
                 frames = 0;
             }
         }
@@ -97,7 +97,4 @@ public class Game implements Runnable {
             game.render();
     }
 
-    public static Window getWindow() {
-        return window;
-    }
 }

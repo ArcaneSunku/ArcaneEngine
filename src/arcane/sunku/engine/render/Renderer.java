@@ -17,12 +17,12 @@ public class Renderer {
         this.Height = height;
     }
 
-    public void process(Window window, SceneManager sceneManager) {
-        if(Game.getWindow() != null) {
-            BufferStrategy bufferStrategy = window.getBufferStrategy();
+    public void process(SceneManager sceneManager) {
+        if(Window.get() != null) {
+            BufferStrategy bufferStrategy = Window.get().getBufferStrategy();
 
             if (bufferStrategy == null) {
-                window.createBufferStrategy(2);
+                Window.get().createBufferStrategy(2);
                 return;
             }
 

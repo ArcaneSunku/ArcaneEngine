@@ -1,4 +1,4 @@
-package arcane.sunku.engine.utilities;
+package arcane.sunku.engine.utilities.data;
 
 import java.io.File;
 import java.io.FileNotFoundException;

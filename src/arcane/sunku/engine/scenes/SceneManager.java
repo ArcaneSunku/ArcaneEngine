@@ -5,21 +5,21 @@ import java.util.List;
 
 public class SceneManager {
 
-    private List<Scene> scenes;
-    private int currState;
+    private final List<Scene> mScenes;
+    private int mCurrentState;
 
-    public SceneManager() { scenes = new ArrayList<>(); }
+    public SceneManager() { mScenes = new ArrayList<>(); }
 
-    public void initialize() { scenes.get(currState).initialize(); }
-    public void update(double dt) { scenes.get(currState).update(dt); }
-    public void render() { scenes.get(currState).render(); }
+    public void initialize() { mScenes.get(mCurrentState).initialize(); }
+    public void update(double dt) { mScenes.get(mCurrentState).update(dt); }
+    public void render() { mScenes.get(mCurrentState).render(); }
 
-    public void addState(Scene scene) { scenes.add(scene); }
-    public void removeState(int index) {
-        scenes.remove(index);
+    public void addScene(Scene scene) { mScenes.add(scene); }
+    public void removeScene(int scene) {
+        mScenes.remove(scene);
     }
-    public void setState(int stateIndex) {
-        currState = stateIndex;
+    public void setScene(int scene) {
+        mCurrentState = scene;
     }
 
 }

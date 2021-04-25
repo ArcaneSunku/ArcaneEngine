@@ -8,14 +8,23 @@ import java.net.URL;
 public class MusicPlayer
 {
 
+    private static MusicPlayer mInstance;
+
     private String currentSong;
     private Ogg ogg;
     private boolean flipMute = true, playing = false;
 
-    public MusicPlayer(String fileName)
+    private MusicPlayer()
     {
-        currentSong = fileName;
+        currentSong = "";
         ogg = createClip(currentSong, 1);
+    }
+
+    public static MusicPlayer get() {
+        if(mInstance == null)
+            mInstance = new MusicPlayer();
+
+        return mInstance;
     }
 
     public void changeVolume(float gain) {

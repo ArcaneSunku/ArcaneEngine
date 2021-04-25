@@ -9,23 +9,36 @@ import java.awt.event.WindowEvent;
 
 public class Window extends Canvas {
 
-    private JFrame frame;
+    private static Window mInstance;
+
+    private final JFrame frame;
+
     private String title;
+    private int width, height;
 
-    public Window(String title, int width, int height) {
-        this.title = title;
-
-        Dimension dim = new Dimension(width, height);
-
-        setMinimumSize(dim);
-        setMaximumSize(dim);
-        setPreferredSize(dim);
+    private Window() {
+        frame = new JFrame();
     }
 
-    public void createWindow() {
-        frame = new JFrame(title);
+    public static Window get() {
+        if(mInstance == null)
+            mInstance = new Window();
 
-        frame.addWindowListener(new WindowAdapter() {
+        return mInstance;
+    }
+
+    public void createWindow(String title, int width, int height) {
+        get().title = title;
+        get().width = width;
+        get().height = height;
+
+        Dimension dimension = new Dimension(get().width, get().height);
+
+        get().setMinimumSize(dimension);
+        get().setMaximumSize(dimension);
+        get().setPreferredSize(dimension);
+
+        get().frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
@@ -43,7 +56,9 @@ public class Window extends Canvas {
             }
         });
 
+        frame.setTitle(get().title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setIgnoreRepaint(true);
         frame.setLayout(new BorderLayout());
         frame.add(this, BorderLayout.CENTER);
         frame.pack();
@@ -51,6 +66,7 @@ public class Window extends Canvas {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
+        setIgnoreRepaint(true);
         setFocusable(true);
         requestFocus();
     }
@@ -63,6 +79,8 @@ public class Window extends Canvas {
     public String getTitle() {
         return title;
     }
+    public int width() { return width; }
+    public int height() { return height; }
 
     public void setTitle(String title) {
         frame.setTitle(title);
