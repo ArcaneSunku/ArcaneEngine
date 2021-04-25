@@ -27,7 +27,7 @@ public abstract class GameAdapter implements IGame{
 
     @Override
     public void initialize() {
-        states.initialize();
+
     }
 
     public String getTitle() {
