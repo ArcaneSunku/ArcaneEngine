@@ -10,22 +10,15 @@ public class Handler {
     private static SceneManager states;
     private static Window parentWindow;
 
-    private final Input input;
-
-    public Handler(SceneManager sceneManager, Window window) {
+    public Handler(SceneManager sceneManager) {
         states = sceneManager;
-        parentWindow = window;
+        parentWindow = Window.get();
 
-        input = new Input(window);
         player = new MusicPlayer("softly_falling.ogg");
     }
 
-    public void update() {
-        input.update();
-    }
-
     public static void switchState(int state) {
-        states.setState(state);
+        states.setScene(state);
         states.initialize();
     }
 

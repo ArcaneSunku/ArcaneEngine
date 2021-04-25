@@ -3,17 +3,22 @@ package arcane.sunku.engine.utilities;
 import arcane.sunku.engine.render.Window;
 
 import java.awt.event.*;
+import java.util.Arrays;
 
 public class Input implements KeyListener, MouseListener, MouseMotionListener {
 
     public static final int LEFT_CLICK = MouseEvent.BUTTON1, MIDDLE_CLICK = MouseEvent.BUTTON2, RIGHT_CLICK = MouseEvent.BUTTON3;
+
+    private static Input mInstance;
 
     private static boolean[] keys, cantPress, justPressed;
     private static boolean[] buttons, cpButton, buttonJP;
 
     private static float mouseX, mouseY;
 
-    public Input(Window win) {
+    private static boolean inScreen;
+
+    private Input() {
         keys = new boolean[256];
         buttons = new boolean[10];
 
@@ -22,9 +27,23 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener {
         cpButton = new boolean[keys.length];
         buttonJP = new boolean[keys.length];
 
-        win.addKeyListener(this);
-        win.addMouseListener(this);
-        win.addMouseMotionListener(this);
+        Arrays.fill(cantPress, false);
+        Arrays.fill(justPressed, false);
+        Arrays.fill(cpButton, false);
+        Arrays.fill(buttonJP, false);
+
+        inScreen = false;
+
+        Window.get().addKeyListener(this);
+        Window.get().addMouseListener(this);
+        Window.get().addMouseMotionListener(this);
+    }
+
+    public static Input get() {
+        if(mInstance == null)
+            mInstance = new Input();
+
+        return mInstance;
     }
 
     public void update() {
@@ -110,12 +129,12 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        inScreen = true;
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        inScreen = false;
     }
 
     @Override
@@ -124,7 +143,9 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        mouseX = e.getX();
-        mouseY = e.getY();
+        if(inScreen) {
+            mouseX = e.getX();
+            mouseY = e.getY();
+        }
     }
 }

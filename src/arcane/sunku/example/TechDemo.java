@@ -2,10 +2,10 @@ package arcane.sunku.example;
 
 import arcane.sunku.engine.Game;
 import arcane.sunku.engine.GameAdapter;
-import arcane.sunku.engine.ecs.GameObject;
 import arcane.sunku.engine.render.Renderer;
 import arcane.sunku.engine.scenes.SceneManager;
 import arcane.sunku.engine.utilities.Handler;
+import arcane.sunku.engine.utilities.Input;
 import arcane.sunku.example.scenes.MenuScene;
 
 public class TechDemo extends GameAdapter {
@@ -21,22 +21,22 @@ public class TechDemo extends GameAdapter {
 
     @Override
     public void initialize() {
-        handler = new Handler(sceneManager, Game.getWindow());
+        handler = new Handler(sceneManager);
         Assets.initialize(); // will probably crash as it's purely for code example
 
-        sceneManager.addState(new MenuScene());
+        sceneManager.addScene(new MenuScene());
         Handler.switchState(0);
     }
 
     @Override
     public void update(double dt) {
-        handler.update();
+        Input.get().update();
         sceneManager.update(dt);
     }
 
     @Override
     public void render() {
-        renderer.process(Game.getWindow(), sceneManager);
+        renderer.process(sceneManager);
     }
 
     public static void main(String[] args) {
